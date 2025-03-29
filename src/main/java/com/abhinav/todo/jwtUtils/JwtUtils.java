@@ -3,6 +3,7 @@ package com.abhinav.todo.jwtUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +15,8 @@ import java.util.Map;
 
 @Component
 public class JwtUtils {
-
-    private String SECRET_KEY="xv98eK4vhshG7aNDHsd+JX3MTNj5wF2t9M8Yo3+UEaQ=\n";
+    @Value("${JWT_SECRET_KEY}")
+    private String SECRET_KEY;
     private SecretKey getSignInKey(){
         return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
     }
